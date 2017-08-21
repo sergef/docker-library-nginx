@@ -2,6 +2,8 @@ FROM sergef/docker-library-alpine:edge
 
 EXPOSE 80 443
 
+ENV NGINX_VERSION 1.12.1-r2
+
 COPY build.sh /build.sh
 COPY APKBUILD.patch /APKBUILD.patch
 
@@ -19,12 +21,13 @@ RUN apk add \
   && deluser --remove-home builder \
   && mkdir /app /run/nginx \
   && apk add \
-    /var/lib/apk/nginx-1.12.0-r2.apk \
-    /var/lib/apk/nginx-mod-http-echo-1.12.0-r2.apk \
-    /var/lib/apk/nginx-mod-http-lua-1.12.0-r2.apk \
-    /var/lib/apk/nginx-mod-http-lua-upstream-1.12.0-r2.apk \
-    /var/lib/apk/nginx-mod-http-headers-more-1.12.0-r2.apk \
-    /var/lib/apk/nginx-mod-http-auth-ldap-1.12.0-r2.apk \
+    /var/lib/apk/nginx-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-stream-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-http-echo-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-http-lua-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-http-lua-upstream-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-http-headers-more-${NGINX_VERSION}.apk \
+    /var/lib/apk/nginx-mod-http-auth-ldap-${NGINX_VERSION}.apk \
   && apk del \
     alpine-sdk \
     coreutils \

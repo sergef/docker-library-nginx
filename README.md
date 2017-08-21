@@ -14,16 +14,20 @@ To see all configured modules:
 nginx -V
 ```
 
-actual location is /usr/lib/nginx/modules:
+Modules built with the image:
 
 ```
-# ls
-ndk_http_module.so                      ngx_http_echo_module.so                 ngx_http_lua_module.so
-ngx_http_auth_ldap_module.so            ngx_http_headers_more_filter_module.so  ngx_http_lua_upstream_module.so
+ndk_http_module.so
+ngx_http_echo_module.so
+ngx_http_lua_module.so
+ngx_stream_module.so
+ngx_http_auth_ldap_module.so
+ngx_http_headers_more_filter_module.so
+ngx_http_lua_upstream_module.so
 ```
 
 Basic nginx configuration included in etc/nginx,
-to extend the config put .conf file(s) to etc/nginx/conf.d
+to extend the config put .conf file(s) to etc/nginx/conf.d/http
 folder of docker images derived from this image.
 
 ### LDAP auth configuration
